@@ -14,11 +14,11 @@ from skopt.utils import cook_estimator
 
 
 def check_minimize(func, y_opt, bounds, acq_optimizer, acq_func,
-                   margin, n_calls, n_random_starts=10):
+                   margin, n_calls, n_random_starts=10, n_jobs=-1):
     r = gp_minimize(func, bounds, acq_optimizer=acq_optimizer,
                     acq_func=acq_func, n_random_starts=n_random_starts,
                     n_calls=n_calls, random_state=1,
-                    noise=1e-10)
+                    noise=1e-10, n_jobs=n_jobs)
     assert_less(r.fun, y_opt + margin)
 
 
