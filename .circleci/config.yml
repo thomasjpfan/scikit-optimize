@@ -21,3 +21,13 @@ jobs:
           name: Run build
           command: |
             bash build_tools/circle/execute.sh
+    deploy:
+      steps:
+        - checkout
+        # - run:
+        #     name: Deploy docs
+        #     command: |
+        #       bash build_tools/circle/deploy.sh
+        - store_artifacts:
+            path: ~/doc/skopt/notebooks
+
