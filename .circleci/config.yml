@@ -8,9 +8,16 @@ jobs:
       - restore_cache:
           key: deps-{{ .Branch }}-{{ checksum "setup.py" }}-{{ checksum "build_tools/circle/install.sh" }}
       - run:
+          name: Install dependencies
           command: |
             bash build_tools/circle/install.sh
+            rm /opt/conda/pkgs/*.tar.bz2
+            rm /opt/conda/pkgs/urls.txt
       - save_cache:
           key: deps-{{ .Branch }}-{{ checksum "setup.py" }}-{{ checksum "build_tools/circle/install.sh" }}
           paths:
             - /opt/conda/pkgs
+      - run:
+          name: Run build
+          command: |
+            bash build_tools/circle/execute.sh
