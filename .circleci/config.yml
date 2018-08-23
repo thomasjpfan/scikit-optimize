@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  test:
+  build:
     docker:
       - image: continuumio/miniconda3:4.5.4
     steps:
@@ -14,8 +14,3 @@ jobs:
           keys: {{ .Branch }}-{{ checksum "setup.py" }}-{{ checksum "build_tools/circle/install.sh" }}
           paths:
             - /opt/conda/pkgs
-
-workflows:
-  version: 2
-  all:
-    - test
