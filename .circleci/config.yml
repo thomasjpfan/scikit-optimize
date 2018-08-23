@@ -20,13 +20,13 @@ jobs:
           command: |
             bash build_tools/circle/execute.sh
             if grep -q "Traceback (most recent call last):" nb_to_md.txt; then false; else true; fi
-    deploy:
-      steps:
-        - checkout
-        # - run:
-        #     name: Deploy docs
-        #     command: |
-        #       bash build_tools/circle/deploy.sh
-        - store_artifacts:
-            path: ~/doc/skopt/notebooks
+  deploy:
+    steps:
+      - checkout
+      # - run:
+      #     name: Deploy docs
+      #     command: |
+      #       bash build_tools/circle/deploy.sh
+      - store_artifacts:
+          path: ~/doc/skopt/notebooks
 
