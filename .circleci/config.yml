@@ -1,16 +1,8 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/
     docker:
-      - image: continuumio/miniconda3:4.5.4
+      - image: circleci/ruby:2.4.1-jessie
     steps:
       - checkout
-      - restore_cache:
-          keys: {{ .Branch }}-{{ checksum "setup.py" }}-{{ checksum "build_tools/circle/install.sh" }}
-      - run:
-          command: ./build_tools/circle/install.sh
-      - save_cache:
-          keys: {{ .Branch }}-{{ checksum "setup.py" }}-{{ checksum "build_tools/circle/install.sh" }}
-          paths:
-            - /opt/conda/pkgs
+      - run: echo "A first hello"
