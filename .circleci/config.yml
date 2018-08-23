@@ -11,8 +11,6 @@ jobs:
           name: Install dependencies
           command: |
             bash build_tools/circle/install.sh
-            rm /opt/conda/pkgs/*.tar.bz2
-            rm /opt/conda/pkgs/urls.txt
       - save_cache:
           key: deps-{{ .Branch }}-{{ checksum "setup.py" }}-{{ checksum "build_tools/circle/install.sh" }}
           paths:
@@ -21,6 +19,7 @@ jobs:
           name: Run build
           command: |
             bash build_tools/circle/execute.sh
+            if grep -q "Traceback (most recent call last):" nb_to_md.txt; then false; else true; fi
     deploy:
       steps:
         - checkout
