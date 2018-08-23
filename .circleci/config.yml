@@ -6,11 +6,11 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: {{ checksum "setup.py" }}-{{ checksum "build_tools/circle/install.sh" }}
+          key: deps-{{ .Branch }}-{{ checksum "setup.py" }}-{{ checksum "build_tools/circle/install.sh" }}
       - run:
           command: |
             bash build_tools/circle/install.sh
       - save_cache:
-          key: {{ checksum "setup.py" }}-{{ checksum "build_tools/circle/install.sh" }}
+          key: deps-{{ .Branch }}-{{ checksum "setup.py" }}-{{ checksum "build_tools/circle/install.sh" }}
           paths:
             - /opt/conda/pkgs
