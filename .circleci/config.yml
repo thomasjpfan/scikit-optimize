@@ -8,7 +8,8 @@ jobs:
       - restore_cache:
           keys: {{ .Branch }}-{{ checksum "setup.py" }}-{{ checksum "build_tools/circle/install.sh" }}
       - run:
-          command: ./build_tools/circle/install.sh
+          command: |
+            bash build_tools/circle/install.sh
       - save_cache:
           keys: {{ .Branch }}-{{ checksum "setup.py" }}-{{ checksum "build_tools/circle/install.sh" }}
           paths:
